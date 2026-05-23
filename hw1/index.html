@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Buy List</title>
   <link rel="stylesheet" href="main.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
   <main class="container">
@@ -13,108 +14,29 @@
         <label for="product-name" class="visually-hidden">Назва товару</label>
         <input id="product-name" type="text" placeholder="Назва товару">
 
-        <button class="add-button tooltip" type="button" data-tooltip="Додати товар">
+        <button class="add-button tooltip" type="submit" data-tooltip="Додати товар">
           Додати
         </button>
       </form>
-      <div class="product-row">
-        <span class="product-name bought">Помідори</span>
-
-        <div class="amount-control">
-          <button class="round-button minus tooltip" type="button" data-tooltip="Зменшити кількість" disabled>
-            -
-          </button>
-          <span class="number">2</span>
-          <button class="round-button plus tooltip" type="button" data-tooltip="Збільшити кількість">
-            +
-          </button>
-        </div>
-
-        <div class="actions">
-          <button class="status-button tooltip" type="button" data-tooltip="Повернути у список">
-            Не куплено
-          </button>
-          <button class="delete-button tooltip" type="button" data-tooltip="Видалити товар">
-            x
-          </button>
-        </div>
-      </div>
-       <div class="product-row">
-        <span class="product-name">Печиво</span>
-
-        <div class="amount-control">
-          <button class="round-button minus tooltip" type="button" data-tooltip="Зменшити кількість">
-            -
-          </button>
-          <span class="number">2</span>
-          <button class="round-button plus tooltip" type="button" data-tooltip="Збільшити кількість">
-            +
-          </button>
-        </div>
-
-        <div class="actions">
-          <button class="status-button tooltip" type="button" data-tooltip="Позначити як куплено">
-            Куплено
-          </button>
-          <button class="delete-button tooltip" type="button" data-tooltip="Видалити товар">
-            x
-          </button>
-        </div>
-      </div>
-
-       <div class="product-row">
-        <span class="product-name">Сир</span>
-
-        <div class="amount-control">
-          <button class="round-button minus tooltip" type="button" data-tooltip="Зменшити кількість" disabled>
-            -
-          </button>
-          <span class="number">1</span>
-          <button class="round-button plus tooltip" type="button" data-tooltip="Збільшити кількість">
-            +
-          </button>
-        </div>
-
-        <div class="actions">
-          <button class="status-button tooltip" type="button" data-tooltip="Позначити як куплено">
-            Куплено
-          </button>
-          <button class="delete-button tooltip" type="button" data-tooltip="Видалити товар">
-            x
-          </button>
-        </div>
-      </div>
+      
+      <div class="products-list"></div>
     </section>
 
     <aside class="summary" aria-label="Підсумок покупок">
       <section class="summary-section">
         <h2>Залишилося</h2>
 
-        <div class="summary-content">
-          <span class="product-item">
-            Печиво
-            <span class="amount">2</span>
-          </span>
-
-          <span class="product-item">
-            Сир
-            <span class="amount">1</span>
-          </span>
-        </div>
+        <div class="summary-content" id="not-bought-summary"></div>
       </section>
 
       <section class="summary-section">
         <h2>Куплено</h2>
 
-        <div class="summary-content">
-          <span class="product-item bought">
-            Помідори
-            <span class="amount">2</span>
-          </span>
-        </div>
+        <div class="summary-content" id="bought-summary"></div>
       </section>
     </aside>
   </main>
+
   <div class="badge">
     <div class="badge-title">Buy List</div>
     <div class="badge-author">
