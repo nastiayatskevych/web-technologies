@@ -1,12 +1,15 @@
 const API = "https://jsonplaceholder.typicode.com";
 
+// Основні елементи сторінки
 const usersContainer = document.querySelector("#users");
 const statusEl = document.querySelector("#status");
 
+// Завантаження списку користувачів при відкритті сторінки
 async function loadUsers() {
   try {
     const response = await fetch(`${API}/users`);
 
+     // Перевірка HTTP-статусу відповіді
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
     }
@@ -20,6 +23,7 @@ async function loadUsers() {
   }
 }
 
+// Відображення всіх користувачів
 function renderUsers(users) {
   usersContainer.textContent = "";
 
@@ -29,6 +33,7 @@ function renderUsers(users) {
   });
 }
 
+// Створення картки одного користувача
 function createUserCard(user) {
   const card = document.createElement("article");
   card.classList.add("card");
@@ -52,12 +57,15 @@ function createUserCard(user) {
   button.type = "button";
   button.textContent = "Завантажити пости";
 
+  // Контейнер для постів користувача
   const postsContainer = document.createElement("div");
   postsContainer.classList.add("posts");
 
+  // Повідомлення про помилки
   const error = document.createElement("p");
   error.classList.add("error");
 
+  // Завантаження постів по кліку
   button.addEventListener("click", () => {
     loadPosts(user.id, button, postsContainer, error);
   });
@@ -67,8 +75,10 @@ function createUserCard(user) {
   return card;
 }
 
+// Завантаження постів конкретного користувача
 async function loadPosts(userId, button, postsContainer, error) {
   try {
+    // Блокуємо повторний клік під час запиту
     button.disabled = true;
     button.textContent = "Завантаження...";
     error.textContent = "";
@@ -92,6 +102,7 @@ async function loadPosts(userId, button, postsContainer, error) {
   }
 }
 
+// Відображення списку постів
 function renderPosts(posts, container) {
   const title = document.createElement("h4");
   title.textContent = "Пости користувача:";
@@ -100,6 +111,8 @@ function renderPosts(posts, container) {
 
   posts.forEach((post) => {
     const li = document.createElement("li");
+
+     // textContent захищає від XSS
     li.textContent = post.title;
     list.appendChild(li);
   });
@@ -107,4 +120,5 @@ function renderPosts(posts, container) {
   container.append(title, list);
 }
 
+// Старт програми
 loadUsers();

@@ -1,9 +1,11 @@
+// Отримуємо елементи зі сторінки
 const form = document.querySelector("#add-form");
 const input = document.querySelector("#new-task");
 const taskList = document.querySelector("#task-list");
 const counter = document.querySelector("#counter");
 const clearDoneButton = document.querySelector("#clear-done");
 
+// Оновлює текст лічильника
 function updateCounter() {
   const allTasks = taskList.querySelectorAll("li");
   const doneTasks = taskList.querySelectorAll("li.done");
@@ -11,6 +13,7 @@ function updateCounter() {
   counter.textContent = `${doneTasks.length} з ${allTasks.length} завершено`;
 }
 
+// Створює новий елемент задачі (li)
 function createTask(text) {
   const li = document.createElement("li");
 
@@ -31,6 +34,7 @@ function createTask(text) {
   return li;
 }
 
+// Додавання нової задачі через submit форми
 form.addEventListener("submit", function (event) {
   event.preventDefault();
 
@@ -49,6 +53,7 @@ form.addEventListener("submit", function (event) {
   updateCounter();
 });
 
+// Event delegation для checkbox та кнопки видалення
 taskList.addEventListener("click", function (event) {
   const target = event.target;
   const li = target.closest("li");
@@ -68,6 +73,7 @@ taskList.addEventListener("click", function (event) {
   }
 });
 
+// Видалення всіх завершених задач
 clearDoneButton.addEventListener("click", function () {
   const doneTasks = taskList.querySelectorAll("li.done");
 
