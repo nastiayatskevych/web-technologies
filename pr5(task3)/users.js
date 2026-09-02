@@ -90,7 +90,7 @@ async function loadPosts(userId, button, postsContainer, error) {
       throw new Error(`HTTP ${response.status}`);
     }
 
-    const posts = await response.json();
+    const posts = await response.json(); //парсинг
     renderPosts(posts, postsContainer);
 
     button.textContent = "Пости завантажено";
